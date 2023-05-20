@@ -9,17 +9,16 @@ const mongoose = require('mongoose');
 const PORT = 3000;
 const app = express();
 
+app.use(express.json());
 app.use(authRouter);
-
-app.use(express.json)
 
 const DB = "mongodb+srv://user:useradmin123@cluster0.zxaqbos.mongodb.net/?retryWrites=true&w=majority"
 mongoose.connect(DB).then(()=>{
-    console.log("OPi");
+    console.log("conexao com sucesso");
 }).catch((e)=>{
     console.log(e);
 });
 
-app.listen(PORT, ()=>{
+app.listen(PORT, "0.0.0.0", ()=>{
     console.log(`CONEXAO NA PORTA ${PORT}`);
 });

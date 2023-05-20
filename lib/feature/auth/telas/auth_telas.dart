@@ -1,7 +1,9 @@
-//import 'package:dindin_app/common/widgets/custom_button.dart';
 import 'package:dindin_app/common/widgets/custom_textfield.dart';
 import 'package:dindin_app/constants/global_variaveis.dart';
+import 'package:dindin_app/feature/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dindin_app/common/widgets/custom_button.dart';
 
 enum Auth {
   signin,
@@ -22,7 +24,8 @@ class _AuthTelaState extends State<AuthTela> {
   final _signUpFormkey = GlobalKey<FormState>();
   //final _signInFormkey = GlobalKey<FormState>();
 
-  final TextEditingController _nomecontroller = TextEditingController();
+  final AuthService authService = AuthService();
+  final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _telefonecontroller = TextEditingController();
   final TextEditingController _passwordcontroller = TextEditingController();
@@ -31,11 +34,22 @@ class _AuthTelaState extends State<AuthTela> {
   @override
   void dispose() {
     super.dispose();
-    _nomecontroller.dispose();
+    _namecontroller.dispose();
     _emailcontroller.dispose();
     _telefonecontroller.dispose();
     _passwordcontroller.dispose();
     _rendacontroller.dispose();
+  }
+
+  void signUpUser() {
+    authService.signUpUsuario(
+      context: context,
+      email: _emailcontroller.text,
+      password: _passwordcontroller.text,
+      name: _namecontroller.text,
+      telefone: _telefonecontroller.text,
+      renda: _rendacontroller.text,
+    );
   }
 
   @override
@@ -49,6 +63,7 @@ class _AuthTelaState extends State<AuthTela> {
         // ignore: prefer_const_constructors
         leading: Icon(Icons.menu),
       ),
+      resizeToAvoidBottomInset: false,
       backgroundColor: GlobalVariables.backgroundColor,
       body: SafeArea(
         child: Padding(
@@ -78,37 +93,43 @@ class _AuthTelaState extends State<AuthTela> {
                 color: GlobalVariables.backgroundColor,
                 child: Form(
                   key: _signUpFormkey,
-                  child: Column(children: [
-                    CustomTesxtField(
-                      controller: _nomecontroller,
-                      hintText: 'Nome',
-                    ),
-                    const SizedBox(height: 10),
-                    CustomTesxtField(
-                      controller: _emailcontroller,
-                      hintText: 'Email',
-                    ),
-                    const SizedBox(height: 10),
-                    CustomTesxtField(
-                      controller: _telefonecontroller,
-                      hintText: 'Telefone',
-                    ),
-                    const SizedBox(height: 10),
-                    CustomTesxtField(
-                      controller: _passwordcontroller,
-                      hintText: 'Senha',
-                    ),
-                    const SizedBox(height: 10),
-                    CustomTesxtField(
-                      controller: _rendacontroller,
-                      hintText: 'Renda',
-                    ),
-                    const SizedBox(height: 10),
-                    //CustomButton(
-                    //  text: 'Cadastrar',
-                    //  ontap: () {},
-                    // ),
-                  ]),
+                  child: Column(
+                    children: [
+                      CustomTesxtField(
+                        controller: _namecontroller,
+                        hintText: 'Nome',
+                      ),
+                      const SizedBox(height: 10),
+                      CustomTesxtField(
+                        controller: _emailcontroller,
+                        hintText: 'Email',
+                      ),
+                      const SizedBox(height: 10),
+                      CustomTesxtField(
+                        controller: _telefonecontroller,
+                        hintText: 'Telefone',
+                      ),
+                      const SizedBox(height: 10),
+                      CustomTesxtField(
+                        controller: _passwordcontroller,
+                        hintText: 'Senha',
+                      ),
+                      const SizedBox(height: 10),
+                      CustomTesxtField(
+                        controller: _rendacontroller,
+                        hintText: 'Renda',
+                      ),
+                      const SizedBox(height: 10),
+                      CustomButton(
+                        text: 'Cadastrar',
+                        onTap: () {
+                          if (_signUpFormkey.currentState!.validate()) {
+                            signUpUser();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

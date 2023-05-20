@@ -1,6 +1,5 @@
 import 'package:dindin_app/constants/global_variaveis.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
 class CustomTesxtField extends StatelessWidget {
   final TextEditingController controller;
@@ -15,22 +14,21 @@ class CustomTesxtField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: hintText,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: GlobalVariables.secondaryColor),
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: hintText,
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(color: GlobalVariables.secondaryColor),
+          ),
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: GlobalVariables.secondaryColor),
+          ),
         ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: GlobalVariables.secondaryColor),
-        ),
-      ),
-    );
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(StringProperty('hintText', hintText));
+        validator: (val) {
+          if (val == null || val.isEmpty) {
+            return 'FAVOR DIGITAR SEU $hintText';
+          }
+          return null;
+        });
   }
 }

@@ -1,14 +1,14 @@
 const { Double } = require('mongodb');
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
-    name: {
+const userSchema = mongoose.Schema({    
+    name:{
         required: true,
         type: String,
         trim: true,
     },
 
-    email: {
+    email:{
         required: true,
         type: String,
         trim: true,
@@ -21,23 +21,23 @@ const userSchema = mongoose.Schema({
         }
     },
 
-    password: {
+    password:{
         required: true,
         type: String,
     },
 
-    address: {
+    telefone:{
         type: String,
         default: '',
         
     },
-    renda: {
+    renda:{
         required: true,
-        type: String,
+        type: Number,
         trim: true,
     },
     
-    type: {
+    type:{
         type: String,
         default: 'user',
     },
