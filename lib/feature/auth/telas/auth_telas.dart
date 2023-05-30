@@ -1,6 +1,7 @@
 import 'package:dindin_app/common/widgets/custom_textfield.dart';
 import 'package:dindin_app/constants/global_variaveis.dart';
 import 'package:dindin_app/feature/auth/services/auth_service.dart';
+import 'package:dindin_app/feature/auth/telas/criar_categorias.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dindin_app/common/widgets/custom_button.dart';
@@ -126,7 +127,19 @@ class _AuthTelaState extends State<AuthTela> {
                           if (_signUpFormkey.currentState!.validate()) {
                             signUpUser();
                           }
+                          () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const CriarCategorias(),
+                                ),
+                              );
                         },
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const AuthTela(),
+                          ),
+                        ),
                       ),
                     ],
                   ),
