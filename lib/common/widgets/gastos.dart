@@ -47,7 +47,7 @@ class _ExpenseState extends State<Expense> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(4),
                           child:
-                          Image.network(widget.foto, fit: BoxFit.cover),
+                          Image.asset(widget.foto, fit: BoxFit.cover),
                         )),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,

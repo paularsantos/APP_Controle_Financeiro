@@ -1,7 +1,7 @@
 import 'package:dindin_app/constants/global_variaveis.dart';
 import 'package:dindin_app/feature/auth/telas/auth_telas.dart';
 import 'package:flutter/material.dart';
-import 'package:dindin_app/telas/tela_de_gastos.dart';
+import 'package:dindin_app/feature/auth/telas/tela_de_gastos.dart';
 
 class BoasVindas extends StatefulWidget {
   static const String routeName = '/boasvindas-tela';

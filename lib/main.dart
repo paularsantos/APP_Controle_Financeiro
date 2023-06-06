@@ -5,7 +5,9 @@ import 'package:dindin_app/feature/auth/telas/boavindas_telas.dart';
 import 'package:dindin_app/feature/auth/telas/criar_categorias.dart';
 import 'package:dindin_app/router.dart';
 import 'package:flutter/material.dart';
-import 'package:dindin_app/telas/tela_de_gastos.dart';
+import 'package:dindin_app/feature/auth/telas/tela_de_gastos.dart';
+
+import 'feature/auth/telas/tela_cadastro_gastos.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       onGenerateRoute: (settings) => generateRouter(settings),
-      home: const ExpensesScreen(), //BoasVindas()
+      home: const FormScreenExpenses(),//ExpensesScreen(), //BoasVindas()
     );
   }
 }

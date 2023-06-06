@@ -23,24 +23,24 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
         opacity: opacidade ? 1 : 0,
         duration: const Duration(milliseconds: 800),
         child: ListView(
-          children: [
-            const Expense(
+          children: const [
+            Expense(
                 'Supermercado',
                 'assets/imgs/supermercado.jpg',
                 3),
-            const Expense(
+            Expense(
                 'Farmácia',
                 'assets/imgs/farmacia.jpg',
                 2),
-            const Expense(
+            Expense(
                 'Transporte',
                 'assets/imgs/transporte.png',
                 5),
-            const Expense(
+            Expense(
                 'Lazer',
                 'assets/imgs/lazer.png',
                 4),
-            const Expense('Academia',
+            Expense('Academia',
                 'assets/imgs/academia.jpg', 1),
             SizedBox(height: 80,)
           ],
