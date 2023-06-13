@@ -81,7 +81,7 @@ class _BoasVindasState extends State<BoasVindas> {
       onPressed: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => const AuthTela(), // ExpensesScreen()
+              builder: (_) => const ExpensesScreen(),//AuthTela()
             ),
           ));
 }

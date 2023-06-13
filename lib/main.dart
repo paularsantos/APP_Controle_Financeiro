@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       onGenerateRoute: (settings) => generateRouter(settings),
-      home: const FormScreenExpenses(),//ExpensesScreen(), //BoasVindas()
+      home: const BoasVindas(),
     );
   }
 }

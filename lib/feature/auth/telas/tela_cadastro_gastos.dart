@@ -113,7 +113,7 @@ class _FormScreenExpensesState extends State<FormScreenExpenses> {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
+                      child: Image.asset(
                         imageController.text,
                         errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace){
                           return Image.asset('assets/imgs/no_foto.jpg');
@@ -127,6 +127,10 @@ class _FormScreenExpensesState extends State<FormScreenExpenses> {
                         if(_formKey.currentState!.validate()) { //implementamndo a validação do formulário no botão
                           print(nameExpenseController.text);
                           print(int.parse(valueExpenseController.text));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Salvando novo gasto')));
+                          Navigator.pop(context); //implementação de retorno de página após cadastro de gasto
                         }
                       },
                       child: Text('Adicionar'))
