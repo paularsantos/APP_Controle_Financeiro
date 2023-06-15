@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, duplicate_ignore
 
 import 'package:dindin_app/constants/global_variaveis.dart';
+import 'package:dindin_app/data/gasto_inherited.dart';
 import 'package:dindin_app/feature/auth/telas/boavindas_telas.dart';
 import 'package:dindin_app/feature/auth/telas/criar_categorias.dart';
 import 'package:dindin_app/router.dart';
@@ -22,19 +23,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Controla DinDin',
       theme: ThemeData(
-        scaffoldBackgroundColor: GlobalVariables.backgroundColor,
-        colorScheme: const ColorScheme.light(
+        //scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+        /*colorScheme: const ColorScheme.light(
           primary: GlobalVariables.secondaryColor,
-        ),
+        ),*/
         appBarTheme: const AppBarTheme(
           elevation: 0,
           iconTheme: IconThemeData(
-            color: Color.fromARGB(221, 220, 12, 12),
+            color: Colors.blue
           ),
         ),
       ),
       onGenerateRoute: (settings) => generateRouter(settings),
-      home: const BoasVindas(),
+      home: ExpenseInherited(child: BoasVindas(welcomeScreenContext: context,))//ExpenseInherited(child: ExpensesScreen(expensesScreenContext: context,)), //expensesScreenContext: context, BoasVindas(welcomeScreenContext: context,)
     );
   }
 }

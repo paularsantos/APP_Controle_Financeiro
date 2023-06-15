@@ -2,20 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:dindin_app/common/widgets/prioridade_do_gasto.dart';
 
 class Expense extends StatefulWidget {
-
   final String nome;
 
   final String foto;
 
-  final int dificuldade;
+  double valor;
 
-  const Expense(this.nome, this.foto, this.dificuldade, {Key? key}) : super(key: key);
+  final int prioridade;
+
+  Expense(this.nome, this.foto, this.valor, this.prioridade, {Key? key})
+      : super(key: key);
 
   @override
   State<Expense> createState() => _ExpenseState();
 }
 
 class _ExpenseState extends State<Expense> {
+  TextEditingController valuePaymentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     int nivel = 0;
@@ -25,13 +29,16 @@ class _ExpenseState extends State<Expense> {
         children: [
           Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4), color: Colors.blue),
-            height: 140,
+                border: Border.all(color: Colors.black12),
+                borderRadius: BorderRadius.circular(4),
+                color: Colors.blue),
+            height: 240,
           ),
           Column(
             children: [
               Container(
                 decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(4),
                     color: Colors.white),
                 height: 100,
@@ -46,8 +53,7 @@ class _ExpenseState extends State<Expense> {
                         height: 100,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(4),
-                          child:
-                          Image.asset(widget.foto, fit: BoxFit.cover),
+                          child: Image.asset(widget.foto, fit: BoxFit.cover),
                         )),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -59,12 +65,11 @@ class _ExpenseState extends State<Expense> {
                               widget.nome,
                               style: const TextStyle(
                                 fontSize: 24,
-                                overflow: TextOverflow
-                                    .ellipsis,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             )),
                         Priority(
-                          priorityLevel: widget.dificuldade,
+                          priorityLevel: widget.prioridade,
                         ),
                       ],
                     ),
@@ -74,7 +79,8 @@ class _ExpenseState extends State<Expense> {
                       child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              nivel++;
+                              widget.valor = widget.valor -
+                                  double.parse(valuePaymentController.text);
                             });
                             //print(nivel);
                           },
@@ -82,15 +88,39 @@ class _ExpenseState extends State<Expense> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Icon(Icons.arrow_drop_up),
+                              Icon(Icons.add),
                               Text(
                                 'R\$',
                                 style: TextStyle(fontSize: 12),
                               )
                             ],
                           )),
-                    )
+                    ),
                   ],
+                ),
+              ),
+              Center(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      validator: (String? value) {
+                        //implementação de validação do formulário
+                        if (value != null && value.isEmpty) {
+                          return 'Informe o pagamento';
+                        }
+                        return null;
+                      },
+                      controller: valuePaymentController,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Informe um Pagamento',
+                        fillColor: Colors.white70,
+                        filled: true,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Row(
@@ -101,18 +131,16 @@ class _ExpenseState extends State<Expense> {
                     child: SizedBox(
                       child: LinearProgressIndicator(
                         color: Colors.white,
-                        value: (widget.dificuldade > 0)
-                            ? (nivel / widget.dificuldade) / 10
-                            : 1,
+                        value: (widget.valor > 0) ? widget.valor : 1,
                       ),
-                      width:
-                      200,
+                      width: 200,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(12),
-                    child: Text('Saldo: $nivel',
-                        style: const TextStyle(color: Colors.white, fontSize: 16)),
+                    child: Text('Saldo: ${widget.valor}',
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16)),
                   ),
                 ],
               ),
@@ -121,6 +149,5 @@ class _ExpenseState extends State<Expense> {
         ],
       ),
     );
-
   }
 }

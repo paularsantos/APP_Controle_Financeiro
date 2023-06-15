@@ -1,24 +1,26 @@
 import 'package:dindin_app/data/gasto_inherited.dart';
+import 'package:dindin_app/feature/auth/telas/tela_de_gastos.dart';
 import 'package:flutter/material.dart';
 
-class FormScreenExpenses extends StatefulWidget {
-  const FormScreenExpenses({Key? key, required this.expenseContext})
+class FormScreenUser extends StatefulWidget {
+  const FormScreenUser({Key? key, required this.userContext})
       : super(key: key);
 
-  final BuildContext expenseContext;
+  final BuildContext userContext;
 
   @override
-  State<FormScreenExpenses> createState() => _FormScreenExpensesState();
+  State<FormScreenUser> createState() => _FormScreenUserState();
 }
 
-class _FormScreenExpensesState extends State<FormScreenExpenses> {
-  TextEditingController nameExpenseController = TextEditingController();
+class _FormScreenUserState extends State<FormScreenUser> {
 
-  TextEditingController valueExpenseController = TextEditingController();
+  TextEditingController nameUserController = TextEditingController();
+
+  TextEditingController emailUserController = TextEditingController();
+
+  TextEditingController incomeUserController = TextEditingController();
 
   TextEditingController imageController = TextEditingController();
-
-  TextEditingController priorityController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>(); //chave para as validações
 
@@ -28,11 +30,11 @@ class _FormScreenExpensesState extends State<FormScreenExpenses> {
       key: _formKey, //chave para as validações
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Novo Gasto'),
+          title: const Text('Novo Usuario'),
         ),
         body: Center(
           child: SingleChildScrollView(
-            //widget que faz com que o tecldo não reajuste ao tamanho da tela, evita overflow da tela
+            //widget que faz com que o teclado não reajuste ao tamanho da tela, evita overflow da tela
             child: Container(
               height: 650,
               width: 375,
@@ -51,15 +53,15 @@ class _FormScreenExpensesState extends State<FormScreenExpenses> {
                       validator: (String? value) {
                         //implementação de validação do formulário
                         if (value != null && value.isEmpty) {
-                          return 'Insira o nome do gasto';
+                          return 'Insira o nome do usuario';
                         }
                         return null;
                       },
-                      controller: nameExpenseController,
+                      controller: nameUserController,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: 'Nome do Gasto',
+                        hintText: 'Nome do Usuario',
                         fillColor: Colors.white70,
                         filled: true,
                       ),
@@ -69,16 +71,17 @@ class _FormScreenExpensesState extends State<FormScreenExpenses> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (String? value) {
+                        //implementação de validação do formulário
                         if (value != null && value.isEmpty) {
-                          return 'Insira a prioridade do gasto (1 a 5)';
+                          return 'Insira o e-mail do usuario';
                         }
                         return null;
                       },
-                      controller: priorityController,
+                      controller: emailUserController,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: 'prioridade do gasto (1 a 5)',
+                        hintText: 'e-mail',
                         fillColor: Colors.white70,
                         filled: true,
                       ),
@@ -96,11 +99,11 @@ class _FormScreenExpensesState extends State<FormScreenExpenses> {
                         return null;
                       },
                       keyboardType: TextInputType.number,
-                      controller: valueExpenseController,
+                      controller: incomeUserController,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: 'Valor a Reservar',
+                        hintText: 'Renda mensal',
                         fillColor: Colors.white70,
                         filled: true,
                       ),
@@ -156,17 +159,17 @@ class _FormScreenExpensesState extends State<FormScreenExpenses> {
                           // print(nameExpenseController.text);
                           // print(int.parse(valueExpenseController.text));
 
-                          ExpenseInherited.of(widget.expenseContext).newExpense(
-                              nameExpenseController.text,
-                              imageController.text,
-                              double.parse(valueExpenseController.text),
-                              int.parse(priorityController.text));
+                          ExpenseInherited.of(widget.userContext).newUser(
+                              nameUserController.text, emailUserController.text,
+                              double.parse(incomeUserController.text), imageController.text);
 
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                  content: Text('Salvando novo gasto')));
-                          Navigator.pop(
-                              context); //implementação de retorno de página após cadastro de gasto
+                                  content: Text('Salvando novo usuario')));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (contextNew) => ExpensesScreen(expensesScreenContext: context))); //implementação de retorno de página após cadastro de gasto
                         }
                       },
                       child: Text('Adicionar'))
