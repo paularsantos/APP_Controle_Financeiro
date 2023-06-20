@@ -27,7 +27,7 @@ class _UserState extends State<User> {
         children: [
           Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4), color: Colors.blue),
+                borderRadius: BorderRadius.circular(4), color: Colors.blue.shade200),
             height: 140,
           ),
           Column(
@@ -35,7 +35,7 @@ class _UserState extends State<User> {
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: Colors.white),
+                    color: Colors.blue.shade100),
                 height: 100,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

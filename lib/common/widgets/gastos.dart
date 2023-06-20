@@ -57,7 +57,7 @@ class _ExpenseState extends State<Expense> {
                         )),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         SizedBox(
                             width: 200,
@@ -142,7 +142,7 @@ class _ExpenseState extends State<Expense> {
                     padding: const EdgeInsets.all(12),
                     child: Text('Saldo: ${widget.valor}',
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 16)),
+                            const TextStyle(color: Colors.white, fontSize: 16)), //
                   ),
                 ],
               ),

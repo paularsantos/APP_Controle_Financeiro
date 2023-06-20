@@ -126,13 +126,11 @@ class _AuthTelaState extends State<AuthTela> {
                         onTap: () {
                           if (_signUpFormkey.currentState!.validate()) {
                             signUpUser();
+                            Navigator.pushReplacementNamed(
+                              context,
+                              CriarCategorias.routeName,
+                            );
                           }
-                          () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const CriarCategorias(),
-                                ),
-                              );
                         },
                         onPressed: () => Navigator.push(
                           context,

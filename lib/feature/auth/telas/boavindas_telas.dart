@@ -7,6 +7,7 @@ import 'package:dindin_app/feature/auth/telas/tela_de_gastos.dart';
 
 class BoasVindas extends StatefulWidget {
   static const String routeName = '/boasvindas-tela';
+
   const BoasVindas({Key? key}) : super(key: key); //, required this.welcomeScreenContext
 
   //final BuildContext welcomeScreenContext;
@@ -34,10 +35,11 @@ class _BoasVindasState extends State<BoasVindas> {
           child: Column(
             children: <Widget>[
               buildImg01(),
-              const SizedBox(height: 32),
+              const SizedBox(height: 50),
               buildtexto(),
-              const SizedBox(height: 32),
+              const SizedBox(height: 50),
               buildLoginButton(context),
+              const SizedBox(height: 10),
             ],
           ),
         ),
@@ -47,23 +49,25 @@ class _BoasVindasState extends State<BoasVindas> {
 
   Widget buildImg01() {
     // ignore: prefer_const_declarations
-    final urlLogo =
-        'https://cdn.pixabay.com/photo/2019/03/20/12/42/money-4068357_1280.png';
+    final logo = ("assets/imgs/dindin.jpg");
 
     return CircleAvatar(
-      backgroundColor: Colors.cyan,
-      backgroundImage: NetworkImage(urlLogo),
-      radius: 180,
+      backgroundColor: Colors.transparent,
+      backgroundImage: AssetImage(logo),
+      radius: 150,
     );
   }
 
   Widget buildtexto() {
     const texto = Text(
-        'O Controla_DINDIN é um app desenhado para todos que desejam controlar e pré-definir seus gastos de maneira simples.');
-    const TextStyle(
-      fontStyle: FontStyle.italic,
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
+      'Este é o Controla_DINDIN, um app projetado para todos que desejam controlar seus gastos, podendo definir suas metas de maneira simples.',
+      textAlign: TextAlign.justify,
+      style: TextStyle(
+        fontSize: 18,
+        fontStyle: FontStyle.normal,
+        color: Colors.blue,
+        fontWeight: FontWeight.bold,
+      ),
     );
     return texto;
   }
@@ -73,7 +77,7 @@ class _BoasVindasState extends State<BoasVindas> {
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         minimumSize: const Size.fromHeight(50),
-        backgroundColor: GlobalVariables.secondaryColor,
+        backgroundColor: Colors.blue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
