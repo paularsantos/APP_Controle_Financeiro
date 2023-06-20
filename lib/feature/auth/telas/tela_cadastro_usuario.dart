@@ -26,6 +26,9 @@ class _FormScreenUserState extends State<FormScreenUser> {
 
   @override
   Widget build(BuildContext context) {
+
+    final userContext = ExpenseInherited.of(widget.userContext);
+
     return Form(
       key: _formKey, //chave para as validações
       child: Scaffold(
@@ -154,22 +157,18 @@ class _FormScreenUserState extends State<FormScreenUser> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          //implementamndo a validação do formulário no botão
-                          // print(nameExpenseController.text);
-                          // print(int.parse(valueExpenseController.text));
-
-                          ExpenseInherited.of(widget.userContext).newUser(
+                        if (_formKey.currentState!.validate()) {//implementamndo a validação do formulário no botão
+                          userContext.newUser(
                               nameUserController.text, emailUserController.text,
                               double.parse(incomeUserController.text), imageController.text);
-
+                              //print(userContext.userList[0].name);
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                   content: Text('Salvando novo usuario')));
                           Navigator.push(
-                              context,
+                              widget.userContext,
                               MaterialPageRoute(
-                                  builder: (contextNew) => ExpensesScreen(expensesScreenContext: context))); //implementação de retorno de página após cadastro de gasto
+                                  builder: (newContext) => ExpenseInherited(child: ExpensesScreen(expensesScreenContext: widget.userContext,)))); //implementação de retorno de página após cadastro de gasto
                         }
                       },
                       child: Text('Adicionar'))

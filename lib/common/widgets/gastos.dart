@@ -88,9 +88,9 @@ class _ExpenseState extends State<Expense> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Icon(Icons.add),
+                              Icon(Icons.account_balance_wallet_outlined),
                               Text(
-                                'R\$',
+                                '-R\$',
                                 style: TextStyle(fontSize: 12),
                               )
                             ],
@@ -131,8 +131,10 @@ class _ExpenseState extends State<Expense> {
                     child: SizedBox(
                       child: LinearProgressIndicator(
                         color: Colors.white,
-                        value: (widget.valor > 0) ? widget.valor : 1,
+                        //value: (widget.valor > 0) ? widget.valor : 1,
+                        value: widget.valor/100,
                       ),
+                      //value: widget.valor,
                       width: 200,
                     ),
                   ),

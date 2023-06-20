@@ -8,7 +8,7 @@ Route<dynamic> generateRouter(RouteSettings routeSettings) {
     case BoasVindas.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (context) => BoasVindas(welcomeScreenContext: context,),
+        builder: (context) => BoasVindas(),
       );
 
     case AuthTela.routeName:

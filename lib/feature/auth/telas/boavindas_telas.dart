@@ -1,4 +1,5 @@
 import 'package:dindin_app/constants/global_variaveis.dart';
+import 'package:dindin_app/data/gasto_inherited.dart';
 import 'package:dindin_app/feature/auth/telas/auth_telas.dart';
 import 'package:dindin_app/feature/auth/telas/tela_cadastro_usuario.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +7,9 @@ import 'package:dindin_app/feature/auth/telas/tela_de_gastos.dart';
 
 class BoasVindas extends StatefulWidget {
   static const String routeName = '/boasvindas-tela';
-  const BoasVindas({Key? key, required this.welcomeScreenContext}) : super(key: key);
+  const BoasVindas({Key? key}) : super(key: key); //, required this.welcomeScreenContext
 
-  final BuildContext welcomeScreenContext;
+  //final BuildContext welcomeScreenContext;
 
   @override
   State<BoasVindas> createState() => _BoasVindasState();
@@ -84,7 +85,7 @@ class _BoasVindasState extends State<BoasVindas> {
       onPressed: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (contextNew) => FormScreenUser(userContext: context),
+              builder: (_) => ExpenseInherited(child: FormScreenUser(userContext: context,)),
             ),
           ));
 }

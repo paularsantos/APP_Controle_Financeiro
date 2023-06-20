@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      onGenerateRoute: (settings) => generateRouter(settings),
-      home: ExpenseInherited(child: BoasVindas(welcomeScreenContext: context,))//ExpenseInherited(child: ExpensesScreen(expensesScreenContext: context,)), //expensesScreenContext: context, BoasVindas(welcomeScreenContext: context,)
+      //onGenerateRoute: (settings) => generateRouter(settings),
+      home: ExpenseInherited(child: BoasVindas()),
     );
   }
 }

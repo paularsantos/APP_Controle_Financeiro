@@ -153,9 +153,6 @@ class _FormScreenExpensesState extends State<FormScreenExpenses> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           //implementamndo a validação do formulário no botão
-                          // print(nameExpenseController.text);
-                          // print(int.parse(valueExpenseController.text));
-
                           ExpenseInherited.of(widget.expenseContext).newExpense(
                               nameExpenseController.text,
                               imageController.text,

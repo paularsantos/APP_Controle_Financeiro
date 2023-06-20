@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:dindin_app/common/widgets/usuarios.dart';
 
 class ExpensesScreen extends StatefulWidget {
-  const ExpensesScreen({Key? key, required this.expensesScreenContext}) //, required this.expensesScreenContext
+  ExpensesScreen(
+      {Key? key,
+      required this.expensesScreenContext})
       : super(key: key);
 
   final BuildContext expensesScreenContext;
@@ -18,18 +20,20 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(
-        ),
+        leading: Container(),
         title: const Text('Gastos Mensais'),
       ),
       body: Column(
         children: [
           Container(
-            child: ExpenseInherited.of(context).userList[0],
+            child:
+                ExpenseInherited.of(widget.expensesScreenContext).userList[0],
           ),
-          Expanded( //permite inserir uma ListView como elemento de uma Column
+          Expanded(
+            //permite inserir uma ListView como elemento de uma Column
             child: ListView(
-              children: ExpenseInherited.of(context).expenseList,
+              children:
+                  ExpenseInherited.of(widget.expensesScreenContext).expenseList,
               padding: EdgeInsets.only(top: 8, bottom: 70),
             ),
           ),
@@ -38,36 +42,24 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context,
+              widget.expensesScreenContext,
               MaterialPageRoute(
                   builder: (contextNew) => FormScreenExpenses(
-                        expenseContext: context,
+                        expenseContext: widget.expensesScreenContext,
                       ))); //implementação de navegação entre páginas
+          for (int i = 0;
+              i <
+                  ExpenseInherited.of(widget.expensesScreenContext)
+                      .expenseList
+                      .length;
+              i++) {
+            print(ExpenseInherited.of(widget.expensesScreenContext)
+                .expenseList[i]
+                .nome);
+          }
         },
         child: const Icon(Icons.add),
       ),
     );
   }
 }
-
-/*
-          Expense(
-              'Supermercado',
-              'assets/imgs/supermercado.jpg',
-              3),
-          Expense(
-              'Farmácia',
-              'assets/imgs/farmacia.jpg',
-              2),
-          Expense(
-              'Transporte',
-              'assets/imgs/transporte.png',
-              5),
-          Expense(
-              'Lazer',
-              'assets/imgs/lazer.png',
-              4),
-          Expense('Academia',
-              'assets/imgs/academia.jpg', 1),
-          SizedBox(height: 80,)
-* */
